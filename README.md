@@ -7,5 +7,5 @@
 # Visible_only_esp
 checks if enemy is visible and hides him from esp i not
 
-[![Download Latest](https://img.shields.io/github/downloads/titaniummachine1/Visible_only_esp/total.svg?style=for-the-badge&logo=download&label=Download%20Latest)](https://github.com/titaniummachine1/Visible_only_esp/releases/latest/download/Visible_only_esp)
+[![Download Latest](https://img.shields.io/github/downloads/titaniummachine1/Visible_only_esp/total.svg?style=for-the-badge&logo=download&label=Download%20Latest)](https://github.com/titaniummachine1/Visible_only_esp/releases/latest/download/Visible_only_esp.lua)
 
