@@ -19,8 +19,6 @@ local defaultSetting = gui.GetValue("minimal priority")                         
 
 if defaultSetting ~= "off" then
     gui.SetValue("minimal priority", 1)
-elseif defaultSetting == 1 then
-    gui.SetValue("minimal priority", 1)
 end
 
 local hitboxes = {
@@ -54,10 +52,12 @@ local function OnCreateMove()
     
     local players = entities.FindByClass("CTFPlayer")
     for i, player in ipairs(players) do
-        if not player:IsValid() or not player:IsAlive() or player:GetTeamNumber() == local_player:GetTeamNumber() then
+        if playerlist.GetPriority(player) >= 2 then goto continue end
+
+        if not player:IsValid() or not player:IsAlive() or player:GetTeamNumber() == local_player:GetTeamNumber() or playerlist.GetPriority(player) >= 2 then
             playerlist.SetPriority(player, 0)
         else
-            local priority = 0
+            local priority = playerlist.GetPriority(player)
             local local_pos = local_player:GetAbsOrigin()
             local local_eye_pos = local_pos + local_player:GetPropVector("localdata", "m_vecViewOffset[0]")
             local player_pos = player:GetAbsOrigin()
@@ -67,19 +67,28 @@ local function OnCreateMove()
             local player_screen_pos = client.WorldToScreen(player:GetAbsOrigin() + player:GetPropVector("localdata", "m_vecViewOffset[0]"))
             if player_screen_pos and player_screen_pos[1] >= 0 and player_screen_pos[1] <= 1920 and player_screen_pos[2] >= 0 and player_screen_pos[2] <= 1080 then
                 if is_visible(player, local_eye_pos, player_eye_pos) then
-                    priority = 1
+                        priority = 1
+                elseif priority == 1 then
+                    priority = 0
                 end
             end
             
             playerlist.SetPriority(player, priority)
         end
+        ::continue::
     end
 end
+
+
+
+
+
 
 
 --[[ Remove the menu when unloaded ]]--
 local function OnUnload()                                -- Called when the script is unloaded
     MenuLib.RemoveMenu(menu)                             -- Remove the menu
+        gui.SetValue("minimal priority", "off")
     client.Command('play "ui/buttonclickrelease"', true) -- Play the "buttonclickrelease" sound
 end
 
