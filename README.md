@@ -5,7 +5,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/titaniummachine1/Visible_only_esp.svg)](https://github.com/titaniummachine1/Visible_only_esp/stargazers)
 
 # Visible_only_esp
-checks if enemy is visible and hides him from esp i not
+ When enabled, it sets the "minimal priority" value to 1 and only shows players that are visible to the player's character. It checks if a player's head hitbox is within the player's view and if they are visible, sets their priority to 1, otherwise it sets their priority to 0.
+also it doesnt modify already set priorities above 1 so when you priority some one at 10 then he will always be visible.
 
 [![Download Latest](https://img.shields.io/github/downloads/titaniummachine1/Visible_only_esp/total.svg?style=for-the-badge&logo=download&label=Download%20Latest)](https://github.com/titaniummachine1/Visible_only_esp/releases/latest/download/Visible_only_esp.lua)
 
