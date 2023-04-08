@@ -65,7 +65,8 @@ local function OnCreateMove()
 
             -- Check if player_eye_pos is within view
             local player_screen_pos = client.WorldToScreen(player:GetAbsOrigin() + player:GetPropVector("localdata", "m_vecViewOffset[0]"))
-            if player_screen_pos and player_screen_pos[1] >= 0 and player_screen_pos[1] <= 1920 and player_screen_pos[2] >= 0 and player_screen_pos[2] <= 1080 then
+            local screen_w, screen_h = client.GetScreenSize()
+        if player_screen_pos and player_screen_pos[1] >= 0 and player_screen_pos[1] <= screen_w and player_screen_pos[2] >= 0 and player_screen_pos[2] <= screen_h then
                 if is_visible(player, local_eye_pos, player_eye_pos) then
                         priority = 1
                 elseif priority == 1 then
